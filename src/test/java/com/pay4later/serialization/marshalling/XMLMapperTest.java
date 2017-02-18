@@ -1,6 +1,8 @@
 package com.pay4later.serialization.marshalling;
 
 import com.pay4later.model.User;
+import com.pay4later.serialization.UserMapper;
+import com.pay4later.serialization.XMLMapper;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,7 +33,7 @@ public class XMLMapperTest {
 
     @Test
     public void serialisePersons() throws Exception {
-        File file = new File(getClass().getResource("/test/").getPath() + "peopleOutTest.xml");
+        File file = new File(getClass().getResource("/test/").getPath() + "usersOutTest.xml");
         people = new LinkedList<>();
         people.add(tUser);
         people.add(tUser);

@@ -1,4 +1,4 @@
-package com.pay4later.serialization.marshalling;
+package com.pay4later.serialization;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created:     by Abdul Al-Faraj
  * Date:        18/02/2017 -- 18:46
- * Class:       com.pay4later.serialization.marshalling.XMLMapper
+ * Class:       com.pay4later.serialization.XMLMapper
  */
 public class XMLMapper implements UserMapper {
 

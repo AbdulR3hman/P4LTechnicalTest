@@ -1,6 +1,7 @@
 package com.pay4later.serialization.marshalling;
 
 import com.pay4later.model.User;
+import com.pay4later.serialization.JsonMapper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

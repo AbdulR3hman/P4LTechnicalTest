@@ -1,4 +1,4 @@
-package com.pay4later.serialization.marshalling;
+package com.pay4later.serialization;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created:     by Abdul Al-Faraj
  * Date:        18/02/2017 -- 15:33
- * Class:       com.pay4later.serialization.marshalling.JsonMapper
+ * Class:       com.pay4later.serialization.JsonMapper
  */
 public class JsonMapper implements UserMapper {
 

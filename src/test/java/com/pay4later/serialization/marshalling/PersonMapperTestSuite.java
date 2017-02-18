@@ -10,7 +10,11 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 
-@Suite.SuiteClasses({JsonMapperTest.class, XMLMapperTest.class})
+@Suite.SuiteClasses({
+        JsonMapperTest.class,
+        XMLMapperTest.class,
+        CSVMapperTest.class
+})
 
 public class PersonMapperTestSuite {
 }

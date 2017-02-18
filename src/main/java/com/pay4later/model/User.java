@@ -99,6 +99,7 @@ public class User {
 
     /**
      * to use A string to parse the date
+     *
      * @param lastLoginTime
      */
     public void setLastLoginTime(String lastLoginTime) {
@@ -153,5 +154,24 @@ public class User {
         result = 31 * result + (getUserType() != null ? getUserType().hashCode() : 0);
         result = 31 * result + (getLastLoginTime() != null ? getLastLoginTime().hashCode() : 0);
         return result;
+    }
+
+    /**
+     *
+     * @return list of user properties as String array
+     */
+    public String[] toStringArray() {
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+
+        String[] usr = {
+                String.valueOf(userId),
+                firstName,
+                lastName,
+                username,
+                userType,
+                df.format(lastLoginTime)
+        };
+
+        return usr;
     }
 }
