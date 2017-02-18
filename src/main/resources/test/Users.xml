@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<users>
+    <user>
+        <user_id>99</user_id>
+        <first_name>John</first_name>
+        <last_name>Doe</last_name>
+        <username>john99</username>
+        <user_type>Demigod</user_type>
+        <last_login_time>01-01-2011 01:01:14</last_login_time>
+    </user>
+    <user>
+        <user_id>100</user_id>
+        <first_name>Jane</first_name>
+        <last_name>Doe</last_name>
+        <username>Jane99</username>
+        <user_type>Demigod</user_type>
+        <last_login_time>01-01-2011 01:01:15</last_login_time>
+    </user>
+</users>

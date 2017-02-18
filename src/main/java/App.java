@@ -4,10 +4,12 @@
  * Class:       PACKAGE_NAME.App
  */
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pay4later.model.Person;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import java.io.File;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamWriter;
+import java.io.StringWriter;
 
 
 public class App {
@@ -21,9 +23,12 @@ public class App {
 
     private void run() throws Exception {
 
-        ObjectMapper mapper = new ObjectMapper();
 
-        Person person = mapper.readValue(new File((getClass().getResource("test/People.json").getFile())), Person.class);
-        System.out.println(person);
+    }
+
+    public class Simple {
+        public int x = 1;
+        public int y = 2;
     }
 }
+

@@ -1,12 +1,11 @@
 package com.pay4later.serialization.marshalling;
 
-import com.pay4later.model.Person;
+import com.pay4later.model.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,20 +14,20 @@ import static org.junit.Assert.*;
 /**
  * Created:     by Abdul Al-Faraj
  * Date:        18/02/2017 -- 16:37
- * Class:       com.pay4later.serialization.marshalling.PersonJasonMapperTest
+ * Class:       com.pay4later.serialization.marshalling.JsonMapperTest
  */
-public class PersonJasonMapperTest {
+public class JsonMapperTest {
 
-    private PersonJasonMapper mapper;
-    private Person tPerson;
-    private List<Person> people;
+    private JsonMapper mapper;
+    private User tUser;
+    private List<User> people;
 
     @Before
     public void setUp() throws Exception {
-        mapper = new PersonJasonMapper();
+        mapper = new JsonMapper();
 
-        tPerson = new Person(99, "John", "Doe", "john99", "Demigod");
-        tPerson.setLastLoginTime("01-01-2011 01:01:14");
+        tUser = new User(99, "John", "Doe", "john99", "Demigod");
+        tUser.setLastLoginTime("01-01-2011 01:01:14");
 
     }
 
@@ -39,9 +38,9 @@ public class PersonJasonMapperTest {
 
     @Test
     public void serialisePersons() {
-        File file = new File(getClass().getResource("/test/").getPath() + "peopleOutTest.json");
-        people = new LinkedList<Person>();
-        people.add(tPerson);
+        File file = new File(getClass().getResource("/test/").getPath() + "usersOutTest.json");
+        people = new LinkedList<User>();
+        people.add(tUser);
 
         mapper.serialisePersons(file, people);
     }
@@ -49,13 +48,13 @@ public class PersonJasonMapperTest {
     @Test
     public void deserialisePersons() {
         people = null;
-        Person johnDoe = null;
-        File file = new File(getClass().getResource("/test/People.json").getFile());
+        User johnDoe = null;
+        File file = new File(getClass().getResource("/test/Users.json").getFile());
 
         people = mapper.deserialisePersons(file);
 
         assertTrue(people.size() > 0);
-        for (Person p : people) {
+        for (User p : people) {
             johnDoe = p;
             break;
         }

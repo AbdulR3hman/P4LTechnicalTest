@@ -1,5 +1,6 @@
 package com.pay4later.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
@@ -10,10 +11,10 @@ import java.util.Date;
 /**
  * Created:     by Abdul Al-Faraj
  * Date:        18/02/2017 -- 14:00
- * Class:       com.pay4later.model.Person
+ * Class:       com.pay4later.model.User
  */
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class Person {
+public class User {
 
     private int userId;
 
@@ -22,12 +23,14 @@ public class Person {
     private String username;
     private String userType;
 
+    @JsonFormat
+            (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date lastLoginTime;
 
-    public Person() {
+    public User() {
     }
 
-    public Person(int userId, String firstName, String lastName, String username, String userType) {
+    public User(int userId, String firstName, String lastName, String username, String userType) {
 
         this.userId = userId;
         this.firstName = firstName;
@@ -80,6 +83,24 @@ public class Person {
         return lastLoginTime;
     }
 
+    public void setLastLoginTime(Date lastLoginTime) {
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+//        try {
+//            Date d = df.parse(lastLoginTime);
+//            this.lastLoginTime = df.parse(lastLoginTime);
+//        } catch (ParseException pse) {
+//            pse.printStackTrace();
+//            System.exit(-1);
+//        }
+
+        this.lastLoginTime = lastLoginTime;
+
+    }
+
+    /**
+     * to use A string to parse the date
+     * @param lastLoginTime
+     */
     public void setLastLoginTime(String lastLoginTime) {
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         try {
@@ -89,12 +110,11 @@ public class Person {
             pse.printStackTrace();
             System.exit(-1);
         }
-
     }
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "User{" +
                 "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -107,20 +127,20 @@ public class Person {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Person)) return false;
+        if (!(o instanceof User)) return false;
 
-        Person person = (Person) o;
+        User user = (User) o;
 
-        if (getUserId() != person.getUserId()) return false;
-        if (getFirstName() != null ? !getFirstName().equals(person.getFirstName()) : person.getFirstName() != null)
+        if (getUserId() != user.getUserId()) return false;
+        if (getFirstName() != null ? !getFirstName().equals(user.getFirstName()) : user.getFirstName() != null)
             return false;
-        if (getLastName() != null ? !getLastName().equals(person.getLastName()) : person.getLastName() != null)
+        if (getLastName() != null ? !getLastName().equals(user.getLastName()) : user.getLastName() != null)
             return false;
-        if (getUsername() != null ? !getUsername().equals(person.getUsername()) : person.getUsername() != null)
+        if (getUsername() != null ? !getUsername().equals(user.getUsername()) : user.getUsername() != null)
             return false;
-        if (getUserType() != null ? !getUserType().equals(person.getUserType()) : person.getUserType() != null)
+        if (getUserType() != null ? !getUserType().equals(user.getUserType()) : user.getUserType() != null)
             return false;
-        return getLastLoginTime() != null ? getLastLoginTime().equals(person.getLastLoginTime()) : person.getLastLoginTime() == null;
+        return getLastLoginTime() != null ? getLastLoginTime().equals(user.getLastLoginTime()) : user.getLastLoginTime() == null;
 
     }
 
