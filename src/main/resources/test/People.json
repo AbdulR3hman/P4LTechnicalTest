@@ -1,0 +1,18 @@
+[
+  {
+    "user_id": 99,
+    "first_name": "John",
+    "last_name": "Doe",
+    "username": "john99",
+    "user_type": "Demigod",
+    "last_login_time": "01-01-2011 01:01:14"
+  },
+  {
+    "user_id": 100,
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "username": "Jane99",
+    "user_type": "Demigod",
+    "last_login_time": "01-01-2011 01:01:15"
+  }
+]

@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -17,10 +20,16 @@ import static org.junit.Assert.*;
 public class PersonJasonMapperTest {
 
     private PersonJasonMapper mapper;
+    private Person tPerson;
+    private List<Person> people;
 
     @Before
     public void setUp() throws Exception {
         mapper = new PersonJasonMapper();
+
+        tPerson = new Person(99, "John", "Doe", "john99", "Demigod");
+        tPerson.setLastLoginTime("01-01-2011 01:01:14");
+
     }
 
     @After
@@ -29,16 +38,35 @@ public class PersonJasonMapperTest {
     }
 
     @Test
-    public void unmarshallPerson() throws Exception {
-        Person person = null;
-        File file = new File(getClass().getResource("/test/abdul.json").getFile());
+    public void serialisePersons() {
+        File file = new File(getClass().getResource("/test/").getPath() + "peopleOutTest.json");
+        people = new LinkedList<Person>();
+        people.add(tPerson);
 
-        person = mapper.unmarshallPerson(file);
+        mapper.serialisePersons(file, people);
+    }
 
-        assertTrue(person != null);
-        assertTrue(file.exists());
+    @Test
+    public void deserialisePersons() {
+        people = null;
+        Person johnDoe = null;
+        File file = new File(getClass().getResource("/test/People.json").getFile());
 
-        assertEquals(person.getFirstName(), "Abdul");
+        people = mapper.deserialisePersons(file);
+
+        assertTrue(people.size() > 0);
+        for (Person p : people) {
+            johnDoe = p;
+            break;
+        }
+        assertEquals(johnDoe.getFirstName(), "John");
+    }
+
+    @Test
+    public void TestunMarshallPeopleWithEmptyFile() {
+        File file = new File(getClass().getResource("/test/Empty.json").getFile());
+        people = mapper.deserialisePersons(file);
+        assertTrue(people.isEmpty());
 
     }
 

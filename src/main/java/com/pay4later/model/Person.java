@@ -27,14 +27,13 @@ public class Person {
     public Person() {
     }
 
-    public Person(int userId, String firstName, String lastName, String username, String userType, Date lastLoginTime) {
+    public Person(int userId, String firstName, String lastName, String username, String userType) {
 
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.userType = userType;
-        this.lastLoginTime = lastLoginTime;
     }
 
     public int getUserId() {

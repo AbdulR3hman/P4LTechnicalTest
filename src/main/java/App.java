@@ -23,7 +23,7 @@ public class App {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        Person person = mapper.readValue(new File((getClass().getResource("test/abdul.json").getFile())), Person.class);
+        Person person = mapper.readValue(new File((getClass().getResource("test/People.json").getFile())), Person.class);
         System.out.println(person);
     }
 }
