@@ -14,7 +14,7 @@ import java.util.Date;
  * Class:       com.pay4later.model.User
  */
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class User {
+public class User implements Comparable{
 
     private int userId;
 
@@ -173,5 +173,11 @@ public class User {
         };
 
         return usr;
+    }
+
+    @Override
+    public int compareTo(Object obj) {
+        User user = (User) obj;
+        return this.getUserId() - user.getUserId();
     }
 }
