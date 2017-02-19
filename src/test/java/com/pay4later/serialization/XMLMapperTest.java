@@ -1,4 +1,4 @@
-package com.pay4later.serialization.marshalling;
+package com.pay4later.serialization;
 
 import com.pay4later.model.User;
 import com.pay4later.serialization.UserMapper;
@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 /**
  * Created:     by Abdul Al-Faraj
  * Date:        18/02/2017 -- 18:54
- * Class:       com.pay4later.serialization.marshalling.XMLMapperTest
+ * Class:       XMLMapperTest
  */
 public class XMLMapperTest {
 
@@ -40,10 +40,10 @@ public class XMLMapperTest {
         people.add(tUser);
 
         mapper.serialisePersons(file, people);
+//        List<User> _users = mapper.deserializePersons(file);
+//
+//        assertEquals(_users, people);
 
-        List<User> _users = mapper.deserialisePersons(file);
-
-        assertEquals(_users, people);
 
     }
 
@@ -52,9 +52,9 @@ public class XMLMapperTest {
 
         people = null;
         User johnDoe = null;
-        File file = new File(getClass().getResource("/test/Users.xml").getFile());
+        File file = new File("/Users/abdulr3hman/temp/data/users.xml");
 
-        people = mapper.deserialisePersons(file);
+        people = mapper.deserializePersons(file);
 
         assertTrue(people.size() > 0);
         for (User p : people) {

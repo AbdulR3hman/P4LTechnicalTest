@@ -1,8 +1,10 @@
 package com.pay4later.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,8 +15,8 @@ import java.util.Date;
  * Date:        18/02/2017 -- 14:00
  * Class:       com.pay4later.model.User
  */
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class User implements Comparable{
+//@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+public class User implements Comparable {
 
     private int userId;
 
@@ -39,66 +41,8 @@ public class User implements Comparable{
         this.userType = userType;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    public Date getLastLoginTime() {
-        return lastLoginTime;
-    }
-
-    public void setLastLoginTime(Date lastLoginTime) {
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-//        try {
-//            Date d = df.parse(lastLoginTime);
-//            this.lastLoginTime = df.parse(lastLoginTime);
-//        } catch (ParseException pse) {
-//            pse.printStackTrace();
-//            System.exit(-1);
-//        }
-
-        this.lastLoginTime = lastLoginTime;
-
-    }
-
     /**
-     * to use A string to parse the date
+     * to use A string to parse the data
      *
      * @param lastLoginTime
      */
@@ -157,7 +101,6 @@ public class User implements Comparable{
     }
 
     /**
-     *
      * @return list of user properties as String array
      */
     public String[] toStringArray() {
@@ -180,4 +123,63 @@ public class User implements Comparable{
         User user = (User) obj;
         return this.getUserId() - user.getUserId();
     }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    @JacksonXmlProperty(localName = "surname")
+    public String getLastName() {
+        return lastName;
+    }
+    @JacksonXmlProperty(localName = "surname")
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    @JacksonXmlProperty(localName = "type")
+    public String getUserType() {
+        return userType;
+    }
+    @JacksonXmlProperty(localName = "type")
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Date lastLoginTime) {
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+//        try {
+//            Date d = df.parse(lastLoginTime);
+//            this.lastLoginTime = df.parse(lastLoginTime);
+//        } catch (ParseException pse) {
+//            pse.printStackTrace();
+//            System.exit(-1);
+//        }
+
+        this.lastLoginTime = lastLoginTime;
+
+    }
+
 }

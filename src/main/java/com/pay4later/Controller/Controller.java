@@ -10,9 +10,9 @@ import java.util.List;
 /**
  * Created:     by Abdul Al-Faraj
  * Date:        18/02/2017 -- 23:22
- * Class:       com.pay4later.Controller.LoadController
+ * Class:       com.pay4later.Controller.Controller
  */
-public class LoadController {
+public class Controller {
 
     private UsersLibrary library;
     private Mapper mapper;
@@ -21,11 +21,10 @@ public class LoadController {
     private File source;
 
     /**
-     *
      * @param sourceDirectory
      * @param destinationDirectory
      */
-    public LoadController(File sourceDirectory, File destinationDirectory){
+    public Controller(File sourceDirectory, File destinationDirectory) {
         library = UsersLibrary.getInstance();
         mapper = new Mapper();
 
@@ -35,20 +34,27 @@ public class LoadController {
 
     /**
      * Collect all users from all file types and store them in the library
+     *
      * @return
      */
-    public int deserializeUsers(){
+    public int deserializeUsers() {
         File[] files = source.listFiles();
-        for(File file : files){
+        for (File file : files) {
             List<User> userList = mapper.deserialize(file);
-            if(userList != null && !userList.isEmpty())
+            if (userList != null && !userList.isEmpty())
                 library.addAll(userList);
         }
 
         return library.getAll().size();
     }
 
-    public void serializeUsers(){
-
+    /**
+     * Serialize list of users as long they're not empty
+     *
+     * @param users
+     */
+    public void serializeUsers(List<User> users) {
+        if (!users.isEmpty())
+            mapper.serialize(users, destination);
     }
 }

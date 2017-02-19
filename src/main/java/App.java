@@ -4,12 +4,10 @@
  * Class:       PACKAGE_NAME.App
  */
 
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.pay4later.Controller.Controller;
+import com.pay4later.model.UsersLibrary;
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamWriter;
-import java.io.StringWriter;
+import java.io.File;
 
 
 public class App {
@@ -22,13 +20,14 @@ public class App {
     }
 
     private void run() throws Exception {
+        File source = new File("/Users/abdulr3hman/temp/data");
+        File destination = new File("/Users/abdulr3hman/temp/out");
+
+        Controller ctrl = new Controller(source, destination);
+        ctrl.deserializeUsers();
+        ctrl.serializeUsers(UsersLibrary.getInstance().getAll());
 
 
-    }
-
-    public class Simple {
-        public int x = 1;
-        public int y = 2;
     }
 }
 

@@ -2,6 +2,7 @@ package com.pay4later.serialization;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.pay4later.model.User;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * Date:        18/02/2017 -- 15:33
  * Class:       com.pay4later.serialization.JsonMapper
  */
-public class JsonMapper implements UserMapper {
+public class JsonMapper implements UserMapper<User> {
 
     private ObjectMapper personMapper;
 
@@ -24,6 +25,7 @@ public class JsonMapper implements UserMapper {
      */
     public JsonMapper() {
         personMapper = new ObjectMapper();
+        personMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SnakeCaseStrategy.SNAKE_CASE);
         personMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
     }
@@ -45,12 +47,11 @@ public class JsonMapper implements UserMapper {
      * @param source
      * @return collection List of User
      */
-    public List<User> deserialisePersons(File source) {
+    public List<User> deserializePersons(File source) {
         List<User> people = new LinkedList<User>();
 
         try {
-            people = personMapper.readValue(source, new TypeReference<List<User>>() {
-            });
+            people = personMapper.readValue(source, new TypeReference<List<User>>() {});
         } catch (IOException e) {
             e.printStackTrace();
         }

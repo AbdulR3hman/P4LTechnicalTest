@@ -15,7 +15,7 @@ import java.util.List;
  * Date:        18/02/2017 -- 20:37
  * Class:       com.pay4later.serialization.CSVMapper
  */
-public class CSVMapper implements UserMapper {
+public class CSVMapper implements UserMapper<User> {
 
     private CsvMapper personMapper;
 

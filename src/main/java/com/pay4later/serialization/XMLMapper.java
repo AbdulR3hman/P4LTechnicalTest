@@ -1,14 +1,12 @@
 package com.pay4later.serialization;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.pay4later.model.User;
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
+import javax.xml.stream.*;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +16,7 @@ import java.util.List;
  * Date:        18/02/2017 -- 18:46
  * Class:       com.pay4later.serialization.XMLMapper
  */
-public class XMLMapper implements UserMapper {
+public class XMLMapper implements UserMapper<User> {
 
     private XmlMapper personMapper;
     private XMLInputFactory xmlInputFactory;
@@ -33,6 +31,8 @@ public class XMLMapper implements UserMapper {
         //So we will be asking the Java XMLStreamWriter to write to the file
         xmlInputFactory = XMLInputFactory.newFactory();
         xmlOutputFactory = XMLOutputFactory.newFactory();
+        personMapper.setPropertyNamingStrategy(PropertyNamingStrategy.LOWER_CASE);
+
     }
 
     /**
@@ -72,12 +72,11 @@ public class XMLMapper implements UserMapper {
      *
      * @return list of users
      */
-    public List<User> deserialisePersons(File source) {
+    public List<User> deserializePersons(File source) {
         List<User> people = new LinkedList<>();
 
         try {
-            people = personMapper.readValue(source, new TypeReference<List<User>>() {
-            });
+            people = personMapper.readValue(source, new TypeReference<List<User>>() {});
         } catch (IOException e) {
             e.printStackTrace();
         }

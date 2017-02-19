@@ -1,5 +1,6 @@
 package com.pay4later.serialization;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.pay4later.model.User;
 
 import java.io.File;
@@ -12,9 +13,9 @@ import java.util.List;
  */
 public class Mapper {
 
-    private UserMapper json;
-    private UserMapper xml;
-    private UserMapper csv;
+    private JsonMapper json;
+    private XMLMapper xml;
+    private CSVMapper csv;
 
     public Mapper() {
         json = new JsonMapper();
@@ -30,11 +31,11 @@ public class Mapper {
     public List<User> deserialize(File file) {
 
         if (file.getName().endsWith(".json")) {
-            return json.deserialisePersons(file);
+            return json.deserializePersons(file);
         } else if (file.getName().endsWith(".xml")) {
-            return xml.deserialisePersons(file);
+            return xml.deserializePersons(file);
         } else if (file.getName().endsWith(".csv")) {
-            return csv.deserialisePersons(file);
+            return csv.deserializePersons(file);
         }
         //If no match found so far, return a null
         return null;
@@ -42,12 +43,17 @@ public class Mapper {
 
     /**
      * serialize (or marshalles in the case of the CSV) all users to Json, CSV, and XML
+     *
      * @param users
      * @param destination
      */
     public void serialize(List<User> users, File destination) {
-        json.serialisePersons(destination, users);
-        xml.serialisePersons(destination, users);
-        csv.serialisePersons(destination, users);
+        File jsondest = new File(destination.getAbsolutePath() + destination.separator + "users.json");
+        File xmldest = new File(destination.getAbsolutePath() + destination.separator + "users.xml");
+        File csvdest = new File(destination.getAbsolutePath() + destination.separator + "users.csv");
+
+        json.serialisePersons(jsondest, users);
+        xml.serialisePersons(xmldest, users);
+        csv.serialisePersons(csvdest, users);
     }
 }
