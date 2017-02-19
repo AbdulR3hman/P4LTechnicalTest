@@ -26,14 +26,16 @@ public class CSVMapper implements UserMapper {
 
     @Override
     public void serialisePersons(File destination, List<User> users) {
-        String[] headers = {"User ID","First Name","Last Name","Username","User Type","Last Login Time"};
+        String[] headers = {"User ID", "First Name", "Last Name", "Username", "User Type", "Last Login Time"};
 
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter(destination));
+            CSVWriter writer = new CSVWriter(new FileWriter(destination), ',', CSVWriter.NO_QUOTE_CHARACTER);
             writer.writeNext(headers);
 
-            for(User usr : users)
+            for (User usr : users)
                 writer.writeNext(usr.toStringArray());
+
+            writer.close();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -42,7 +44,7 @@ public class CSVMapper implements UserMapper {
     }
 
     @Override
-    public List<User> deserialisePersons(File source) {
+    public List<User> deserializePersons(File source) {
 
         List<User> users = new LinkedList<>();
         try {
