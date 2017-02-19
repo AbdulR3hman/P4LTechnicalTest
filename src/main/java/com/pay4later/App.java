@@ -1,7 +1,7 @@
-/**
+package com.pay4later; /**
  * Created:     by Abdul Al-Faraj
  * Date:        18/02/2017 -- 14:05
- * Class:       PACKAGE_NAME.App
+ * Class:       PACKAGE_NAME.com.pay4later.App
  */
 
 import com.pay4later.Controller.Controller;
@@ -31,6 +31,8 @@ public class App {
 
         logger.info("Start to Deserialize");
         ctrl.deserializeUsers();
+
+        ctrl.sortLibrary();
 
         logger.info("Start to Serialize");
         ctrl.serializeUsers(UsersLibrary.getInstance().getAll());
