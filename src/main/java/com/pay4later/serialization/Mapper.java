@@ -5,6 +5,7 @@ import com.pay4later.model.User;
 
 import java.io.File;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created:     by Abdul Al-Faraj
@@ -12,6 +13,8 @@ import java.util.List;
  * Class:       com.pay4later.serialization.Mapper
  */
 public class Mapper {
+
+    private static Logger logger = Logger.getLogger(Mapper.class.getName());
 
     private JsonMapper json;
     private XMLMapper xml;
@@ -30,6 +33,7 @@ public class Mapper {
      */
     public List<User> deserialize(File file) {
 
+        logger.info("Deserializing Directory: " + file.getPath());
         if (file.getName().endsWith(".json")) {
             return json.deserializePersons(file);
         } else if (file.getName().endsWith(".xml")) {
@@ -48,6 +52,9 @@ public class Mapper {
      * @param destination
      */
     public void serialize(List<User> users, File destination) {
+        logger.info("Serializing library users to : ");
+        logger.info("Destination: " + destination.getPath());
+
         File jsondest = new File(destination.getAbsolutePath() + destination.separator + "users.json");
         File xmldest = new File(destination.getAbsolutePath() + destination.separator + "users.xml");
         File csvdest = new File(destination.getAbsolutePath() + destination.separator + "users.csv");

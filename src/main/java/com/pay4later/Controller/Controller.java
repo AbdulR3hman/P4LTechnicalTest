@@ -5,6 +5,7 @@ import com.pay4later.model.UsersLibrary;
 import com.pay4later.serialization.Mapper;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -56,5 +57,10 @@ public class Controller {
     public void serializeUsers(List<User> users) {
         if (!users.isEmpty())
             mapper.serialize(users, destination);
+    }
+
+
+    public void sortLibrary(){
+        library.sort();
     }
 }

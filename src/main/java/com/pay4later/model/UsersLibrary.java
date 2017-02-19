@@ -1,5 +1,6 @@
 package com.pay4later.model;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -63,5 +64,12 @@ public class UsersLibrary {
      */
     public User get(int index) {
         return users.get(index);
+    }
+
+    /**
+     * Sorts the library based on the user ID
+     */
+    public void sort(){
+        Collections.sort(users);
     }
 }
